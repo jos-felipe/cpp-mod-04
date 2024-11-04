@@ -1,75 +1,88 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
-void testBasicFunctionality() {
-    std::cout << "\n=== Basic Functionality Tests ===" << std::endl;
+void testCorrectPolymorphism() {
+    std::cout << "\n=== Testing Correct Polymorphism ===" << std::endl;
     
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    const Animal* animal = new Animal();
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
 
-    std::cout << "\nTesting getType():" << std::endl;
-    std::cout << "j Type: " << j->getType() << std::endl;
-    std::cout << "i Type: " << i->getType() << std::endl;
+    std::cout << "\nTypes:" << std::endl;
+    std::cout << "Animal type: " << animal->getType() << std::endl;
+    std::cout << "Dog type: " << dog->getType() << std::endl;
+    std::cout << "Cat type: " << cat->getType() << std::endl;
     
-    std::cout << "\nTesting makeSound():" << std::endl;
-    std::cout << "i (Cat) sound: ";
-    i->makeSound();
-    std::cout << "j (Dog) sound: ";
-    j->makeSound();
-    std::cout << "meta (Animal) sound: ";
-    meta->makeSound();
+    std::cout << "\nSounds:" << std::endl;
+    std::cout << "Animal sound: ";
+    animal->makeSound();
+    std::cout << "Dog sound: ";
+    dog->makeSound();
+    std::cout << "Cat sound: ";
+    cat->makeSound();
 
-    // Cleanup
-    delete meta;
-    delete j;
-    delete i;
+    delete animal;
+    delete dog;
+    delete cat;
+}
+
+void testWrongPolymorphism() {
+    std::cout << "\n=== Testing Wrong Polymorphism ===" << std::endl;
+    
+    const WrongAnimal* wrongAnimal = new WrongAnimal();
+    const WrongAnimal* wrongCat = new WrongCat();  // Points to WrongCat but treated as WrongAnimal
+    const WrongCat* actualWrongCat = new WrongCat();  // Direct WrongCat pointer
+
+    std::cout << "\nTypes:" << std::endl;
+    std::cout << "WrongAnimal type: " << wrongAnimal->getType() << std::endl;
+    std::cout << "WrongCat through WrongAnimal type: " << wrongCat->getType() << std::endl;
+    std::cout << "WrongCat direct type: " << actualWrongCat->getType() << std::endl;
+    
+    std::cout << "\nSounds:" << std::endl;
+    std::cout << "WrongAnimal sound: ";
+    wrongAnimal->makeSound();
+    std::cout << "WrongCat through WrongAnimal sound (will be wrong): ";
+    wrongCat->makeSound();  // Will use WrongAnimal's makeSound due to non-virtual function
+    std::cout << "WrongCat direct sound: ";
+    actualWrongCat->makeSound();  // Will use WrongCat's makeSound
+
+    delete wrongAnimal;
+    delete wrongCat;
+    delete actualWrongCat;
 }
 
 void testCopyConstructors() {
-    std::cout << "\n=== Copy Constructor Tests ===" << std::endl;
+    std::cout << "\n=== Testing Copy Constructors ===" << std::endl;
     
-    std::cout << "\nTesting Dog copy:" << std::endl;
-    Dog originalDog;
-    Dog copiedDog(originalDog);
-    
-    std::cout << "\nTesting Cat copy:" << std::endl;
+    // Test regular animals
     Cat originalCat;
     Cat copiedCat(originalCat);
     
-    std::cout << "\nTesting sounds of copied animals:" << std::endl;
-    std::cout << "Original Dog: ";
-    originalDog.makeSound();
-    std::cout << "Copied Dog: ";
-    copiedDog.makeSound();
+    // Test wrong animals
+    WrongCat originalWrongCat;
+    WrongCat copiedWrongCat(originalWrongCat);
+    
+    std::cout << "\nTesting copied sounds:" << std::endl;
     std::cout << "Original Cat: ";
     originalCat.makeSound();
     std::cout << "Copied Cat: ";
     copiedCat.makeSound();
-}
-
-void testAssignmentOperators() {
-    std::cout << "\n=== Assignment Operator Tests ===" << std::endl;
-    
-    Dog dog1;
-    Dog dog2;
-    std::cout << "\nTesting Dog assignment:" << std::endl;
-    dog2 = dog1;
-    
-    Cat cat1;
-    Cat cat2;
-    std::cout << "\nTesting Cat assignment:" << std::endl;
-    cat2 = cat1;
+    std::cout << "Original WrongCat: ";
+    originalWrongCat.makeSound();
+    std::cout << "Copied WrongCat: ";
+    copiedWrongCat.makeSound();
 }
 
 int main() {
-    std::cout << "Starting Animal Class Tests\n" << std::endl;
+    std::cout << "Starting Polymorphism Tests\n" << std::endl;
 
-    testBasicFunctionality();
+    testCorrectPolymorphism();
+    testWrongPolymorphism();
     testCopyConstructors();
-    testAssignmentOperators();
 
     std::cout << "\nAll tests completed.\n" << std::endl;
     return 0;

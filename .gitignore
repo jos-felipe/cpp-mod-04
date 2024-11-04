@@ -1,3 +1,6 @@
-*.*
-!*.hpp
-!*.cpp
+*.pdf
+
+ex00/*
+!ex00/Makefile
+!ex00/*.cpp
+!ex00/*.hpp
