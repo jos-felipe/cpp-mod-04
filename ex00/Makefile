@@ -7,7 +7,6 @@ RM			= rm -rf
 SRCS		= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
-# Valgrind flags for memory leak detection
 VALGRIND	= valgrind
 VFLAGS		= --leak-check=full --show-leak-kinds=all --track-origins=yes --quiet
 
