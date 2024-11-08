@@ -4,18 +4,20 @@ Cat::Cat() : Animal() {
     std::cout << "Cat constructor called" << std::endl;
     this->type = "Cat";
     this->brain = new Brain();
+    for (int i = 0; i < 100; ++i)
+        this->brain->ideas[i] = "I love lasagna!";
 }
 
 Cat::Cat(const Cat& other) : Animal(other) {
     std::cout << "Cat copy constructor called" << std::endl;
-    *this = other;
+    this->brain = new Brain(*other.brain);
 }
 
 Cat& Cat::operator=(const Cat& other) {
     if (this != &other) {
         Animal::operator=(other);
-        delete this->brain;
-        this->brain = new Brain(*other.brain);
+        for (int i = 0; i < 100; ++i)
+            this->brain->ideas[i] = other.brain->ideas[i];
     }
     return *this;
 }
