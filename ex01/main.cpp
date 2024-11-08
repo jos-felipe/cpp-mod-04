@@ -51,33 +51,33 @@ int main(void)
     dogDeepCopy();
     catDeepCopy();
 
-    // std::cout << BOLDGREEN << "\n=== Creating array of animals ===" << RESET << std::endl;
+    std::cout << BOLDGREEN << "\n=== Creating array of animals ===" << RESET << std::endl;
     
-    // const Animal* animals[ARRAY_SIZE];
+    const Animal* animals[ARRAY_SIZE];
     
-    // for (int i = 0; i < ARRAY_SIZE / 2; i++) {
-    //     std::cout << BLUE << "\nCreating Dog " << i << RESET << std::endl;
-    //     animals[i] = new Dog();
-    // }
+    for (int i = 0; i < ARRAY_SIZE / 2; i++) {
+        std::cout << BLUE << "\nCreating Dog " << i << RESET << std::endl;
+        animals[i] = new Dog();
+    }
     
-    // for (int i = ARRAY_SIZE / 2; i < ARRAY_SIZE; i++) {
-    //     std::cout << MAGENTA << "\nCreating Cat " << i << RESET << std::endl;
-    //     animals[i] = new Cat();
-    // }
+    for (int i = ARRAY_SIZE / 2; i < ARRAY_SIZE; i++) {
+        std::cout << MAGENTA << "\nCreating Cat " << i << RESET << std::endl;
+        animals[i] = new Cat();
+    }
     
-    // std::cout << BOLDYELLOW << "\n=== Making all animals sound ===" << RESET << std::endl;
+    std::cout << BOLDYELLOW << "\n=== Making all animals sound ===" << RESET << std::endl;
     
-    // for (int i = 0; i < ARRAY_SIZE; i++) {
-    //     std::cout << "Animal " << i << " makes: ";
-    //     animals[i]->makeSound();
-    // }
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        std::cout << "Animal " << i << " makes: ";
+        animals[i]->makeSound();
+    }
     
-    // std::cout << BOLDRED << "\n=== Deleting all animals ===" << RESET << std::endl;
+    std::cout << BOLDRED << "\n=== Deleting all animals ===" << RESET << std::endl;
     
-    // for (int i = 0; i < ARRAY_SIZE; i++) {
-    //     std::cout << "\nDeleting animal " << i << std::endl;
-    //     delete animals[i];
-    // }
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        std::cout << "\nDeleting animal " << i << std::endl;
+        delete animals[i];
+    }
     
     return 0;
 }
