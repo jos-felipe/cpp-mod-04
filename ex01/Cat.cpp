@@ -3,6 +3,7 @@
 Cat::Cat() : Animal() {
     std::cout << "Cat constructor called" << std::endl;
     this->type = "Cat";
+    this->brain = new Brain();
 }
 
 Cat::Cat(const Cat& other) : Animal(other) {
@@ -11,13 +12,17 @@ Cat::Cat(const Cat& other) : Animal(other) {
 }
 
 Cat& Cat::operator=(const Cat& other) {
-    if (this != &other)
+    if (this != &other) {
         Animal::operator=(other);
+        delete this->brain;
+        this->brain = new Brain(*other.brain);
+    }
     return *this;
 }
 
 Cat::~Cat() {
     std::cout << "Cat destructor called" << std::endl;
+    delete this->brain;
 }
 
 void Cat::makeSound() const {
