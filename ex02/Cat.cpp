@@ -1,6 +1,6 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal() {
+Cat::Cat() : AAnimal() {
     std::cout << "Cat constructor called" << std::endl;
     this->type = "Cat";
     this->brain = new Brain();
@@ -8,14 +8,14 @@ Cat::Cat() : Animal() {
         this->brain->ideas[i] = "I love lasagna!";
 }
 
-Cat::Cat(const Cat& other) : Animal(other) {
+Cat::Cat(const Cat& other) : AAnimal(other) {
     std::cout << "Cat copy constructor called" << std::endl;
     this->brain = new Brain(*other.brain);
 }
 
 Cat& Cat::operator=(const Cat& other) {
     if (this != &other) {
-        Animal::operator=(other);
+        AAnimal::operator=(other);
         for (int i = 0; i < 100; ++i)
             this->brain->ideas[i] = other.brain->ideas[i];
     }
