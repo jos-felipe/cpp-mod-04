@@ -70,22 +70,41 @@ int	main(void)
 		edd->use(0, *eddy);
 		eddy->use(0, *edd);
 
+		std::cout << YELLOW << "---Copy deletes Alice's cure ability and replace it with Bob's ice---" << RESET << std::endl;
+		Character* alice = new Character("Alice");
+		AMateria* mat = new Cure();
+		alice->equip(mat);
+		Character* bob = new Character("Bob");
+		AMateria* bob_mat = new Ice();
+		bob->equip(bob_mat);
+		alice->use(0, *bob);
+		*alice = *bob;
+		alice->use(0, *bob);
+
 		std::cout << YELLOW << "---There are " << ed->getCharacterCount() << " players in the game---" << RESET << std::endl;
 
 		delete ed;
 		delete edd;
 		delete eddy;
+		delete alice;
+		delete bob;
 	}
 	{
 		std::cout << std::endl << std::endl;
 		std::cout << BOLD << "*TEST 4. Character Habilities*" << RESET << std::endl;
-		ICharacter* me = new Character("Thais");
+		ICharacter* me = new Character("Pilgrim");
 
 		std::cout << YELLOW << "---Unable to unequip empty inventory---" << RESET << std::endl;
 		me->unequip(0);
 
 		std::cout << YELLOW << "---Unable to unequip invalid slot---" << RESET << std::endl;
 		me->unequip(5);
+
+		std::cout << YELLOW << "---Unable to use invalid slot---" << RESET << std::endl;
+		me->use(5, *me);
+
+		std::cout << YELLOW << "---Unable to use an empty slot---" << RESET << std::endl;
+		me->use(1, *me);
 
 		std::cout << YELLOW << "---Unequip should not delete materia---" << RESET << std::endl;
 		AMateria* mat;

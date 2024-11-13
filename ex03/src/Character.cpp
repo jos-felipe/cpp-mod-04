@@ -33,9 +33,7 @@ Character&	Character::operator=(const Character& rhs)
 		this->_name = rhs.getName();
 		for (int i = 0; i < SLOTS; i++)
 		{
-			/*
-			the Materia of a Character must be deleted before the new ones are added to their inventory.
-			*/
+			// the Materia of a Character must be deleted before the new ones are added to their inventory.
 			delete this->_inventory[i];
 			this->_inventory[i] = NULL;
 			if (rhs._inventory[i])
