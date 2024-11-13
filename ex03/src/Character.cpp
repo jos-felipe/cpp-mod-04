@@ -8,7 +8,6 @@ Character::Character()
 	Character::_characterCount++;
 }
 
-// Your Character must have a constructor taking its name as a parameter.
 Character::Character(std::string name) : _name(name)
 {
 	// The inventory is empty at construction
@@ -60,6 +59,11 @@ std::string const&	Character::getName() const
 	return this->_name;
 }
 
+int	Character::getCharacterCount() const
+{
+	return this->_characterCount;
+}
+
 void	Character::equip(AMateria* m)
 {
 	// 4 Materias at most.
@@ -101,6 +105,7 @@ void	Character::use(int idx, ICharacter& target)
 		std::cout << RED << "Invalid inventory slot" << RESET << std::endl;
 	else if (this->_inventory[idx] == NULL)
 		std::cout << RED << "Inventory slot is empty" << RESET << std::endl;
+	// use the Materia at the slot[idx], and pass the target parameter to the AMateria::use function
 	else
 		this->_inventory[idx]->use(target);
 }

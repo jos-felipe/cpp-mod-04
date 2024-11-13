@@ -11,6 +11,7 @@ int	main(void)
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 
+		// Your Character must have a constructor taking its name as a parameter.
 		ICharacter* me = new Character("me");
 
 		AMateria* tmp;
@@ -53,7 +54,7 @@ int	main(void)
 		Character* ed = new Character("edward");
 		AMateria* tmp;
 		tmp = new Ice();
-		ed->equip(tmp);	
+		ed->equip(tmp);
 
 		std::cout << YELLOW << "---Edd is created as a copy of Ed---" << RESET << std::endl;
 		Character* edd = new Character(*ed);
@@ -68,6 +69,8 @@ int	main(void)
 		ed->unequip(0);
 		edd->use(0, *eddy);
 		eddy->use(0, *edd);
+
+		std::cout << YELLOW << "---There are " << ed->getCharacterCount() << " players in the game---" << RESET << std::endl;
 
 		delete ed;
 		delete edd;
