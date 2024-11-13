@@ -2,13 +2,16 @@
 
 Character::Character()
 {
+	// The inventory is empty at construction
 	for (int i = 0; i < SLOTS; i++)
 		this->_inventory[i] = NULL;
 	Character::_characterCount++;
 }
 
+// Your Character must have a constructor taking its name as a parameter.
 Character::Character(std::string name) : _name(name)
 {
+	// The inventory is empty at construction
 	for (int i = 0; i < SLOTS; i++)
 		this->_inventory[i] = NULL;
 	Character::_characterCount++;
@@ -16,6 +19,7 @@ Character::Character(std::string name) : _name(name)
 
 Character::Character(const Character& src)
 {
+	// The inventory is empty at construction
 	for (int i = 0; i < SLOTS; i++)
 		this->_inventory[i] = NULL;
 	Character::_characterCount++;
@@ -26,9 +30,13 @@ Character&	Character::operator=(const Character& rhs)
 {
 	if (this != &rhs)
 	{
+		// Any copy of a Character must be deep
 		this->_name = rhs.getName();
 		for (int i = 0; i < SLOTS; i++)
 		{
+			/*
+			the Materia of a Character must be deleted before the new ones are added to their inventory.
+			*/
 			delete this->_inventory[i];
 			this->_inventory[i] = NULL;
 			if (rhs._inventory[i])
@@ -40,6 +48,7 @@ Character&	Character::operator=(const Character& rhs)
 
 Character::~Character()
 {
+	// the Materias must be deleted when a Character is destroyed.
 	for (int i = 0; i < SLOTS; i++)
 		delete this->_inventory[i];
 	Character::_characterCount--;
@@ -53,8 +62,10 @@ std::string const&	Character::getName() const
 
 void	Character::equip(AMateria* m)
 {
+	// 4 Materias at most.
 	for (int i = 0; i < SLOTS; i++)
 	{
+		// They equip the Materias in the first empty slot they find.
 		if (this->_inventory[i] == NULL)
 		{
 			this->_inventory[i] = m;
@@ -63,16 +74,19 @@ void	Character::equip(AMateria* m)
 			return ;
 		}
 	}
+	// Full inventory: Don't do anything (but still, bugs are forbidden).
 	std::cout << RED << this->_name << "`s inventory is full. Materia input will be deleted." << RESET << std::endl;
 	delete m;
 }
 
 void	Character::unequip(int idx)
 {
+	// An unexisting Materia: Don't do anything (but still, bugs are forbidden).
 	if (idx < 0 || idx >= SLOTS)
 		std::cout << RED << "Invalid inventory slot" << RESET << std::endl;
 	else if (this->_inventory[idx] == NULL)
 		std::cout << RED << "Inventory slot is already empty" << RESET << std::endl;
+	// Don't delete the Materia!
 	else
 	{
 		Character::dropOnFloor(this->_inventory[idx]);
@@ -82,6 +96,7 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter& target)
 {
+	// An unexisting Materia: Don't do anything (but still, bugs are forbidden).
 	if (idx < 0 || idx >= SLOTS)
 		std::cout << RED << "Invalid inventory slot" << RESET << std::endl;
 	else if (this->_inventory[idx] == NULL)

@@ -5,13 +5,14 @@
 # include "ICharacter.hpp"
 # include "AMateria.hpp"
 # include "Colors.hpp" 
-# define SLOTS 4
+# define SLOTS 4 // The Character possesses an inventory of 4 slots.
 # define FLOOR_SIZE 42
 
 class Character : public ICharacter {
 
 public:
 	Character();
+	// Your Character must have a constructor taking its name as a parameter.
 	Character(std::string name);
 	Character(const Character& src);
 	Character&	operator=(const Character& rhs);
