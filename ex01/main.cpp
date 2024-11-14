@@ -20,6 +20,12 @@ void dogDeepCopy() {
     
     std::cout << CYAN << "Original dog idea: " << originalDog->getBrain()->ideas[0] << RESET << std::endl;
     std::cout << CYAN << "Copy dog idea: " << copyDog->getBrain()->ideas[0] << RESET << std::endl;
+
+    std::cout << YELLOW << "\nRestoring copy dog's idea..." << RESET << std::endl;
+    *copyDog = *originalDog;
+
+    std::cout << CYAN << "Original dog idea: " << originalDog->getBrain()->ideas[0] << RESET << std::endl;
+    std::cout << CYAN << "Copy dog idea: " << copyDog->getBrain()->ideas[0] << RESET << std::endl;
     
     delete originalDog;
     delete copyDog;
@@ -41,6 +47,12 @@ void catDeepCopy() {
     
     std::cout << CYAN << "Original Cat idea: " << originalCat->getBrain()->ideas[0] << RESET << std::endl;
     std::cout << CYAN << "Copy Cat idea: " << copyCat->getBrain()->ideas[0] << RESET << std::endl;
+
+    std::cout << YELLOW << "\nRestoring copy cat's idea..." << RESET << std::endl;
+    *copyCat = *originalCat;
+
+    std::cout << CYAN << "Original cat idea: " << originalCat->getBrain()->ideas[0] << RESET << std::endl;
+    std::cout << CYAN << "Copy cat idea: " << copyCat->getBrain()->ideas[0] << RESET << std::endl;
     
     delete originalCat;
     delete copyCat;
