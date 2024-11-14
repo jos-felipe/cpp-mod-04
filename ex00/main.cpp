@@ -8,7 +8,7 @@ int main(void)
 	{
 		std::cout << BOLDCYAN << "TEST 1. Correct implementation" << RESET << std::endl;
 		const Animal*	meta = new Animal();
-		const Animal*	j = new Dog();
+		const Animal*	j = new Dog(); // Polimorfismo em acao
 		const Animal*	i = new Cat();
 		std::cout << std::endl;
 	
@@ -16,7 +16,7 @@ int main(void)
 		std::cout << i->getType() << " enters the playroom" << std::endl;
 		std::cout << meta->getType() << " enters the playroom" << std::endl;
 	
-		i->makeSound();
+		i->makeSound(); // Chama o metodo da classe Cat
 		j->makeSound();
 		meta->makeSound();
 		std::cout << std::endl;
