@@ -1,7 +1,6 @@
 #ifndef IMATERIA_SOURCE_HPP
 # define IMATERIA_SOURCE_HPP
 
-# include <iostream>
 # include <string>
 # include "AMateria.hpp"
 

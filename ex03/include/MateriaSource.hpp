@@ -2,7 +2,6 @@
 # define MATERIA_SOURCE_HPP
 
 # include "IMateriaSource.hpp"
-# include "Colors.hpp" 
 # define MEMORY_SIZE 4
 
 class	MateriaSource : public IMateriaSource

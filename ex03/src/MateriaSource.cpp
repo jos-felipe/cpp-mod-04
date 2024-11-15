@@ -1,4 +1,6 @@
 #include "MateriaSource.hpp"
+#include <iostream>
+#include "Colors.hpp" 
 
 MateriaSource::MateriaSource()
 {
