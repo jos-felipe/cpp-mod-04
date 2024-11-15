@@ -1,22 +1,17 @@
-#================================FLAGS=========================================#
-
+NAME = interface
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDE = -I $(HEADER_PATH)
 
-#================================PATHS=========================================#
-
 SRC_PATH = ./src
 HEADER_PATH = ./include
 
-#================================FILES=========================================#
-
-NAME = interface
 SRC = $(wildcard $(SRC_PATH)/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 HEADER = $(wildcard $(HEADER_PATH)/*.hpp)
 
-#================================RULES=========================================#
+VALGRIND	= valgrind
+VFLAGS		= --leak-check=full --show-leak-kinds=all --track-origins=yes --quiet
 
 all: $(NAME)
 
@@ -26,20 +21,15 @@ $(NAME): $(OBJ) $(HEADER)
 $(SRC_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADER)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-run: all
-	./$(NAME)
-
-leak: all
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
-
-#================================CLEAN=========================================#
-
 clean:
-	rm -f $(OBJ)
+			rm -f $(OBJ)
 
-fclean: clean
-	rm -f $(NAME)
+fclean: 	clean
+			rm -f $(NAME)
 
-re: fclean all
+re: 		fclean all
 
-.PHONY: all clean fclean re run leak
+leaks: 		re
+			$(VALGRIND) $(VFLAGS) ./$(NAME)
+
+.PHONY: all clean fclean re run leaks
