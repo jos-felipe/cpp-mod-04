@@ -40,7 +40,7 @@ This project explores fundamental Object-Oriented Programming concepts in C++98,
 - Prevents instantiation of base class
 - Demonstrates pure virtual functions
 
-### Ex03: Interfaces & Materials System
+### Ex03: Interfaces & RPG Game System
 - Implementation of various interfaces (`ICharacter`, `IMateriaSource`)
 - Concrete classes (`Character`, `MateriaSource`, `Ice`, `Cure`)
 - Inventory management system
@@ -50,7 +50,6 @@ This project explores fundamental Object-Oriented Programming concepts in C++98,
 ## Implementation Details
 
 ### Key Features
-- Orthodox Canonical Form compliance
 - Memory leak prevention
 - Proper inheritance hierarchies
 - Virtual method implementations
@@ -68,16 +67,14 @@ This project explores fundamental Object-Oriented Programming concepts in C++98,
 # Compile 
 make
 
-# Run tests
-./materia_test
+# Run tests and check for leaks
+make leaks
 ```
 
 ## Design Notes
 
-- Characters have 4 inventory slots
-- MateriaSource can learn up to 4 different Materias
-- Unequipped Materias are managed to prevent memory leaks
-- Copy operations perform deep copies
+- Debug messages during object instation and destruction
+- Orthodox Canonical Form compliance
 - Color-coded console output for better readability
 
 ## Requirements
@@ -85,4 +82,3 @@ make
 - C++98 standard
 - Compilation with Wall -Wextra -Werror flags
 - No memory leaks
-- No forbidden functions (printf, alloc, free)
