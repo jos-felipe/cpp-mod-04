@@ -8,11 +8,11 @@ MateriaSource::MateriaSource()
 		this->_memory[i] = NULL;
 }
 
-MateriaSource::MateriaSource(const MateriaSource& src)
+MateriaSource::MateriaSource(const MateriaSource& rhs)
 {
 	for (int i = 0; i < MEMORY_SIZE; i++)
 		this->_memory[i] = NULL;
-	*this = src;
+	*this = rhs;
 }
 
 MateriaSource&	MateriaSource::operator=(const MateriaSource& rhs)
